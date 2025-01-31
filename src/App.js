@@ -1,9 +1,11 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import Portfolio from './components/Portfolio/Portfolio';
 import Services from './components/Services/Services';
+import HowWeHelp from './components/HowWeHelp/HowWeHelp';
+import Portfolio from './components/Portfolio/Portfolio';
 import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 import './App.scss';
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
         <section id="services">
           <Services />
         </section>
+        <section id="how-we-help">
+          <HowWeHelp />
+        </section>
         <section id="portfolio">
           <Portfolio />
         </section>
@@ -24,6 +29,7 @@ function App() {
           <Contact />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

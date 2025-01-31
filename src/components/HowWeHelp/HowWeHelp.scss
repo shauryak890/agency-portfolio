@@ -1,0 +1,121 @@
+.how-we-help {
+  width: 100%;
+  background: #0f172a;
+  color: white;
+  overflow: hidden;
+  position: relative;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .help-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+
+      .icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+  }
+
+  .success-metrics {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    .metric {
+      text-align: center;
+
+      h4 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      p {
+        color: #94a3b8;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .how-we-help {
+    .section-header {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .help-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .success-metrics {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+}

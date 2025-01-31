@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ContactModal from '../ContactModal/ContactModal';
+import ScheduleMeeting from '../ScheduleMeeting/ScheduleMeeting';
 import './Hero.scss';
 
 const Hero = () => {
+  const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const companyName = 'Shelby Solutions';
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
-        x: (e.clientX - window.innerWidth / 2) / 20,
-        y: (e.clientY - window.innerHeight / 2) / 20,
+        x: e.clientX,
+        y: e.clientY,
       });
     };
 
@@ -19,22 +22,28 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const handleStartProject = () => {
-    setIsContactModalOpen(true);
-  };
+  useEffect(() => {
+    let currentIndex = 0;
+    let timeout;
 
-  const handleViewWork = () => {
-    const portfolioSection = document.getElementById('portfolio');
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+    const typeText = () => {
+      if (currentIndex <= companyName.length) {
+        setDisplayText(companyName.slice(0, currentIndex));
+        currentIndex++;
+        timeout = setTimeout(typeText, 100);
+      } else {
+        setIsTyping(false);
+      }
+    };
+
+    typeText();
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
-      <div className="hero" id="home">
+      <section className="hero" id="home">
         <div className="gradient-sphere"></div>
-        
         <div className="hero-container">
           <motion.div 
             className="hero-content"
@@ -48,26 +57,11 @@ const Hero = () => {
               transition={{ duration: 0.6 }}
             >
               Welcome to <br />
-              <span className="highlight">Vertex Solutions</span>
+              <span className="highlight typewriter-text">
+                {displayText}
+                {isTyping && <span className="cursor">|</span>}
+              </span>
             </motion.h1>
-
-            <motion.div
-              className="rotating-text"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              We Create
-              <div className="words">
-                <span>
-                  <div>Websites</div>
-                  <div>Mobile Apps</div>
-                  <div>E-commerce</div>
-                  <div>Digital Solutions</div>
-                  <div>Websites</div>
-                </span>
-              </div>
-            </motion.div>
 
             <motion.p
               className="hero-description"
@@ -85,12 +79,17 @@ const Hero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <button className="primary-button" onClick={handleStartProject}>
-                <span className="button-text">Start Your Project</span>
-                <span className="button-icon">→</span>
+              <button className="primary-button" onClick={() => setIsMeetingModalOpen(true)}>
+                <span className="button-text">Schedule a Meeting</span>
+                <span className="button-icon">📅</span>
               </button>
               
-              <button className="secondary-button" onClick={handleViewWork}>
+              <button className="secondary-button" onClick={() => {
+                const portfolioSection = document.getElementById('portfolio');
+                if (portfolioSection) {
+                  portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}>
                 <span className="button-text">View Our Work</span>
               </button>
             </motion.div>
@@ -127,7 +126,7 @@ const Hero = () => {
               repeatType: "reverse",
             }}
             style={{
-              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+              transform: `translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px)`,
             }}
           >
             <motion.div 
@@ -158,14 +157,53 @@ const Hero = () => {
             >
               {'🌐'}
             </motion.div>
+            <motion.div 
+              className="element database"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+            >
+              {'🗄️'}
+            </motion.div>
+            <motion.div 
+              className="element cloud"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+            >
+              {'☁️'}
+            </motion.div>
+            <motion.div 
+              className="element security"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8.5, repeat: Infinity, ease: "linear" }}
+            >
+              {'🔒'}
+            </motion.div>
+            <motion.div 
+              className="element analytics"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 7.5, repeat: Infinity, ease: "linear" }}
+            >
+              {'📊'}
+            </motion.div>
+            <motion.div 
+              className="element ai"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8.2, repeat: Infinity, ease: "linear" }}
+            >
+              {'🤖'}
+            </motion.div>
+            <motion.div 
+              className="element innovation"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 8.8, repeat: Infinity, ease: "linear" }}
+            >
+              {'💡'}
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      <ContactModal 
-        isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
-      />
+      <ScheduleMeeting isOpen={isMeetingModalOpen} onClose={() => setIsMeetingModalOpen(false)} />
     </>
   );
 };

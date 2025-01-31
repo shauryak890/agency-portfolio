@@ -25,14 +25,24 @@
 
   .logo {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: #38bdf8;
+    font-weight: 600;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     background: linear-gradient(45deg, #38bdf8, #818cf8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
+
+    .typewriter-text {
+      display: inline-block;
+      
+      .cursor {
+        display: inline-block;
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+      }
+    }
 
     &::after {
       content: '';
@@ -50,6 +60,15 @@
     &:hover::after {
       transform: scaleX(1);
       transform-origin: left;
+    }
+  }
+
+  @keyframes blink {
+    from, to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
     }
   }
 

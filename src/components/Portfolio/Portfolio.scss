@@ -1,127 +1,139 @@
 .portfolio {
+  background: #0f172a;
   padding: 6rem 0;
-  background: #f8fafc;
+  color: white;
 
   .section-header {
     text-align: center;
     margin-bottom: 4rem;
 
     h2 {
-      color: #1e293b;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
+      background: linear-gradient(45deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     p {
-      color: #64748b;
+      color: #94a3b8;
       font-size: 1.1rem;
     }
   }
 
-  .projects-grid {
+  .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 0 1rem;
   }
 
-  .project-card {
-    background: white;
+  .portfolio-item {
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
 
     &:hover {
       transform: translateY(-5px);
 
-      .project-overlay {
+      .overlay {
         opacity: 1;
       }
-    }
-
-    .project-image {
-      position: relative;
-      width: 100%;
-      padding-top: 60%;
-      overflow: hidden;
 
       img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .project-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(37, 99, 235, 0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-
-        .view-project {
-          color: white;
-          text-decoration: none;
-          padding: 0.8rem 1.5rem;
-          border: 2px solid white;
-          border-radius: 2rem;
-          font-weight: 500;
-          transition: all 0.3s ease;
-
-          &:hover {
-            background: white;
-            color: #2563eb;
-          }
-        }
+        transform: scale(1.05);
       }
     }
+  }
 
-    .project-info {
-      padding: 1.5rem;
+  .portfolio-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
 
-      h3 {
-        color: #1e293b;
-        margin-bottom: 0.5rem;
-        font-size: 1.25rem;
+  .portfolio-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    background: #1e293b;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      padding: 1rem;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      span {
+        color: white;
+        font-weight: 500;
+        padding: 0.5rem 1.5rem;
+        border: 2px solid white;
+        border-radius: 2rem;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
       }
+    }
+  }
 
-      p {
-        color: #64748b;
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-        line-height: 1.5;
-      }
+  .portfolio-content {
+    padding: 1.5rem;
 
-      .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+    .category {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
 
-        .tag {
-          background: #e2e8f0;
-          color: #475569;
-          padding: 0.3rem 0.8rem;
-          border-radius: 1rem;
-          font-size: 0.8rem;
-          font-weight: 500;
-        }
-      }
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
   }
 }
 
 @media (max-width: 768px) {
   .portfolio {
-    .projects-grid {
+    .portfolio-grid {
       grid-template-columns: 1fr;
+    }
+
+    .section-header {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .portfolio-image {
+      height: 200px;
     }
   }
 }

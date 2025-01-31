@@ -49,7 +49,21 @@
         background: linear-gradient(45deg, #38bdf8, #818cf8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-weight: 700;
         display: inline-block;
+        
+        &.typewriter-text {
+          .cursor {
+            display: inline-block;
+            margin-left: 2px;
+            width: 2px;
+            height: 1em;
+            background: #38bdf8;
+            -webkit-text-fill-color: #38bdf8;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-top;
+          }
+        }
       }
 
       @media (max-width: 768px) {
@@ -193,71 +207,97 @@
   .floating-elements {
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 400px;
-    height: 400px;
+    top: 0;
+    height: 100%;
+    width: 600px;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
+
+    .element {
+      position: absolute;
+      font-size: 2.5rem;
+      opacity: 0.8;
+      
+      &.code {
+        top: 10%;
+        right: 70%;
+      }
+      
+      &.design {
+        top: 25%;
+        right: 30%;
+      }
+      
+      &.mobile {
+        top: 40%;
+        right: 75%;
+      }
+      
+      &.web {
+        top: 55%;
+        right: 40%;
+      }
+
+      &.database {
+        top: 20%;
+        right: 45%;
+      }
+
+      &.cloud {
+        top: 35%;
+        right: 65%;
+      }
+
+      &.security {
+        top: 50%;
+        right: 25%;
+      }
+
+      &.analytics {
+        top: 65%;
+        right: 60%;
+      }
+
+      &.ai {
+        top: 80%;
+        right: 35%;
+      }
+
+      &.innovation {
+        top: 70%;
+        right: 55%;
+      }
+    }
 
     @media (max-width: 1024px) {
       display: none;
     }
+  }
 
-    .element {
-      position: absolute;
-      font-size: 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      padding: 1rem;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-
-      &.code {
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      &.design {
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-      }
-
-      &.mobile {
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      &.web {
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-      }
+  @keyframes blink {
+    from, to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
     }
   }
-}
 
-@keyframes slide {
-  0%, 20% {
-    transform: translateY(0);
-  }
-  25%, 45% {
-    transform: translateY(-45px);
-  }
-  50%, 70% {
-    transform: translateY(-90px);
-  }
-  75%, 95% {
-    transform: translateY(-135px);
-  }
-  100% {
-    transform: translateY(-180px);
+  @keyframes slide {
+    0%, 20% {
+      transform: translateY(0);
+    }
+    25%, 45% {
+      transform: translateY(-45px);
+    }
+    50%, 70% {
+      transform: translateY(-90px);
+    }
+    75%, 95% {
+      transform: translateY(-135px);
+    }
+    100% {
+      transform: translateY(-180px);
+    }
   }
 }

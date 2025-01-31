@@ -35,6 +35,14 @@ const Navbar = () => {
     }
   };
 
+  const navItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'Services', href: '#services' },
+    { label: 'How We Help', href: '#how-we-help' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Contact', href: '#contact' }
+  ];
+
   const menuVariants = {
     closed: {
       x: "100%",
@@ -63,21 +71,22 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="navbar-container">
-          <motion.div 
+          <motion.div
             className="logo"
-            onClick={() => scrollToSection('home')}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Vertex Solutions
+            Shelby Solutions
           </motion.div>
 
           <div className="nav-right">
             <div className="desktop-nav">
-              <button className="nav-link" onClick={() => scrollToSection('home')}>Home</button>
-              <button className="nav-link" onClick={() => scrollToSection('services')}>Services</button>
-              <button className="nav-link" onClick={() => scrollToSection('portfolio')}>Portfolio</button>
-              <button className="nav-link" onClick={() => scrollToSection('contact')}>Contact</button>
+              {navItems.map((item, index) => (
+                <button key={index} className="nav-link" onClick={() => scrollToSection(item.href.slice(1))}>{item.label}</button>
+              ))}
             </div>
 
             <motion.button
@@ -106,42 +115,18 @@ const Navbar = () => {
             exit="closed"
           >
             <div className="menu-content">
-              <motion.button
-                className="mobile-nav-link"
-                onClick={() => scrollToSection('home')}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Home
-              </motion.button>
-              <motion.button
-                className="mobile-nav-link"
-                onClick={() => scrollToSection('services')}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                Services
-              </motion.button>
-              <motion.button
-                className="mobile-nav-link"
-                onClick={() => scrollToSection('portfolio')}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                Portfolio
-              </motion.button>
-              <motion.button
-                className="mobile-nav-link"
-                onClick={() => scrollToSection('contact')}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                Contact
-              </motion.button>
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={index}
+                  className="mobile-nav-link"
+                  onClick={() => scrollToSection(item.href.slice(1))}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
             </div>
           </motion.div>
         )}

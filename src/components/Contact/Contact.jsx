@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './Contact.scss';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: '',
   });
 
@@ -54,20 +53,6 @@ const Contact = () => {
                 <p>info@youragency.com</p>
               </div>
             </div>
-            <div className="info-item">
-              <FontAwesomeIcon icon={faPhone} />
-              <div>
-                <h3>Call Us</h3>
-                <p>+1 234 567 8900</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <FontAwesomeIcon icon={faLocationDot} />
-              <div>
-                <h3>Visit Us</h3>
-                <p>123 Agency Street, City, Country</p>
-              </div>
-            </div>
           </motion.div>
 
           <motion.form
@@ -94,16 +79,6 @@ const Contact = () => {
                 name="email"
                 placeholder="Your Email"
                 value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                value={formData.subject}
                 onChange={handleChange}
                 required
               />
