@@ -50,7 +50,7 @@ const Contact = () => {
               <FontAwesomeIcon icon={faEnvelope} />
               <div>
                 <h3>Email Us</h3>
-                <p>info@youragency.com</p>
+                <p>shauryakashyap1278@gmail.com</p>
               </div>
             </div>
           </motion.div>
