@@ -95,7 +95,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <img src={process.env.PUBLIC_URL + '/shelbysolutions.png'} alt="Shelby Solutions Logo" style={{height: '40px', width: 'auto'}} />
+            Shelby Solutions
           </motion.div>
 
           <div className="nav-right">
