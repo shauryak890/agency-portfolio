@@ -5,6 +5,7 @@ import './Navbar.scss';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,21 @@ const Navbar = () => {
         setScrolled(true);
       } else {
         setScrolled(false);
+      }
+      
+      // Detect active section
+      const sections = ['home', 'services', 'how-we-help', 'portfolio', 'contact'];
+      const navbarHeight = 80;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop - navbarHeight - 100;
+          if (window.scrollY >= sectionTop) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
       }
     };
 
@@ -79,13 +95,19 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Shelby Solutions
+            <img src={process.env.PUBLIC_URL + '/shelbysolutions.png'} alt="Shelby Solutions Logo" style={{height: '40px', width: 'auto'}} />
           </motion.div>
 
           <div className="nav-right">
             <div className="desktop-nav">
               {navItems.map((item, index) => (
-                <button key={index} className="nav-link" onClick={() => scrollToSection(item.href.slice(1))}>{item.label}</button>
+                <button 
+                  key={index} 
+                  className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`} 
+                  onClick={() => scrollToSection(item.href.slice(1))}
+                >
+                  {item.label}
+                </button>
               ))}
             </div>
 
@@ -107,28 +129,37 @@ const Navbar = () => {
 
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            className="mobile-menu"
-            variants={menuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-          >
-            <div className="menu-content">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={index}
-                  className="mobile-nav-link"
-                  onClick={() => scrollToSection(item.href.slice(1))}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div 
+              className="mobile-menu-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.div
+              className="mobile-menu"
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              <div className="menu-content">
+                {navItems.map((item, index) => (
+                  <motion.button
+                    key={index}
+                    className={`mobile-nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
+                    onClick={() => scrollToSection(item.href.slice(1))}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
